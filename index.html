@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoTLaB </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+
+    
+</head>
+<body>
+    
+    <div class = "header">
+        <img src="Images/logohutech.png">
+        <h1>IoT</h1>
+        <h1>Smart Garden</h1>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <h1> Temperature </h1>
+                <img src="Images/temperature2.png">
+                    <div class="value">
+                        <p id = "Temperature"></p>
+                    </div>
+            </div>
+        </div>
+        
+        <div class="column">
+            <h1> Gas </h1>
+                <img src="Images/gas.png">
+                    <div class="value">
+                        <p id = "Gas"></p>
+                    </div>
+        </div>
+
+        <div class="column">
+            <h1> Humidity </h1>
+                <img src="Images/humidity.png">
+                    <div class="value">
+                        <p id = "Humidity"></p>
+                    </div>
+        </div>
+        
+
+        <div class="column">
+            <h1> Led </h1>
+                <div class="border">
+                    <img src="Images/ledoff.png" id = "led">
+                    <p><button type="button" id="led1" >On</button>
+                    <button type="button" id="led2" >Off</button></p>
+                </div>
+        </div>
+
+        <div class="column">  
+            <h1> Fan </h1>
+                <div class="border">
+                     <img src="Images/fanoff.png" id = "fan">
+                     <p><button type="button" id="fan1" >On</button>
+                     <button type="button" id="fan2" >Off</button></p>
+                </div>
+        </div>
+        
+        <div class="column">
+            <h1> Sound </h1>
+                <div class="border">
+                     <img src="Images/soundoff.png" id = "sound" >
+                     <p><button type="button" id="sound1" >On</button>
+                     <button type="button" id="sound2" >Off</button></p>
+                </div>
+        </div>
+    </div>
+      
+<footer>
+
+    <h1>Details</h1>
+        <div class="row">
+            <div class="column1">
+                <h1>Member1</h1>
+                <img src="Images/vu.jpg" >
+                <h3>Hồ Trần Quang Vũ</h3>
+                <h3>ID: 2080600825</h3>
+                <h3>Email: hovu64497@gmai.com </h3>
+            </div>
+            <div class="column1">
+                <h1>Member2</h1>
+                <img src="Images/222.png" >
+                <h3>Nguyễn Quang Huy</h3>
+                <h3>ID: 19119040</h3>
+                <h3>Email: nonamedok@gmail.com </h3>
+            </div>
+        </div>
+</footer>
+
+    
+    <script src="function.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+<script>
+    const firebaseConfig = {
+    apiKey: "AIzaSyC3WPr44gSYzM9vWiGNePRzKwrX75kQeWM",
+    authDomain: "iotlab-ea87e.firebaseapp.com",
+    projectId: "iotlab-ea87e",
+    storageBucket: "iotlab-ea87e.appspot.com",
+    messagingSenderId: "149973854784",
+    appId: "1:149973854784:web:e22589f40c1a59a9af4da5",
+    measurementId: "G-8H1PKD7D4E"
+  };
+
+  // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    
+      var Temperature = document.getElementById('Temperature');
+      var dbRef1 = firebase.database().ref('Set').child('Nhiet do');  
+      var Gas = document.getElementById('Gas');
+      var dbRef2 = firebase.database().ref('Set').child('Khi gas');
+      var Humidity = document.getElementById('Humidity');
+      var dbRef3 = firebase.database().ref('Set').child('Do am');
+    
+        dbRef1.on('value', snap => Temperature.innerText = snap.val());
+        dbRef2.on('value', snap => Gas.innerText = snap.val());
+        dbRef3.on('value', snap => Humidity.innerText = snap.val());
+       
+      
+</script>
+</body>
+</html>
